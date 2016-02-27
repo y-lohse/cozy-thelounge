@@ -9,26 +9,28 @@ class Lounge{
 	cmd(command){
 		var fullCommand = "node " + this.loungeDir + "index.js " + command + " --home " + this.home;
 		
-		return exec(fullCommand);
+		var handler = exec(fullCommand);
+		
+		handler.stdout.on('data', function(message){
+			console.log(message);
+		});
+		
+		handler.stderr.on('data', function(message){
+			console.log('lounge error (' + command + '): ' + message);
+		});
+		
+		handler.on('exit', function(code){
+			console.log('lounge (' + command + ') exit code ' + code);
+		});
+		
+		return handler;
 	}
 	start(){
 		var port = process.env.PORT || 9155;
 		var host = process.env.HOST || '127.0.0.1';
 		var startCommand = 'start --port ' + port + ' --host ' + host;
 		
-		var start = this.cmd(startCommand);
-		
-		start.stdout.on('data', function(message){
-			console.log(message);
-		});
-		
-		start.stderr.on('data', function(message){
-			console.log('lounge error: ' + message);
-		});
-		
-		start.on('exit', function(code){
-			console.log('lounge exit code ' + code);
-		});
+		return this.cmd(startCommand);
 	}
 }
 
