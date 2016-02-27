@@ -1,10 +1,12 @@
 {
   "name": "cozy-thelounge",
   "version": "0.0.1",
-  "description": "",
+  "description": "The self-hosted Web IRC client",
+  "displayName": "The Lounge",
   "main": "server.js",
   "scripts": {
-    "postinstall": "cd node_modules/thelounge && npm install"
+    "postinstall": "cd node_modules/thelounge && npm install",
+	"start": "node server.js"
   },
   "author": "",
   "license": "MIT",
