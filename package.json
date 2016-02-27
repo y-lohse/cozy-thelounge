@@ -9,6 +9,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "mkdirp": "^0.5.1",
     "thelounge": "^1.2.1"
   }
 }
