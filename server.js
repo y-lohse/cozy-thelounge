@@ -1,6 +1,7 @@
-var fs = require('fs');
-var mkdirp = require('mkdirp');
-var TheLounge = require('./lounge');
+var fs = require('fs'),
+	mkdirp = require('mkdirp'),
+	TheLounge = require('./lounge');
+var defaultConfig = require('./defaults/config.js');
 
 var loungeDir = 'node_modules/thelounge/',
 	configDir = process.env.APPLICATION_PERSISTENT_DIRECTORY || __dirname + '/config',
@@ -8,8 +9,7 @@ var loungeDir = 'node_modules/thelounge/',
 
 var lounge = new TheLounge(loungeDir, configDir);
 
-var userName = 'test',
-	password = '';
+var userName = defaultConfig.cozyuser;
 
 //make sure there is a full config
 function checkConfig(){
@@ -42,7 +42,7 @@ function checkUser(){
 			
 			userHandler.stdout.on('data', function(message){
 				//contrary to what the doc says, the password has to be inputed manually
-				if (message.match(/^Password/)) userHandler.stdin.write(password + "\n");
+				if (message.match(/^Password/)) userHandler.stdin.write("\n");
 				//and then for whatever reason, the process doesn't terminate after the user is created
 				else if (message.match(new RegExp("^User '" + userName + "' created"))) userHandler.kill();
 			});
@@ -50,11 +50,11 @@ function checkUser(){
 			userHandler.on('exit', function(){
 				//write default networks
 				var userInfo = require(userFile);
-				var defaults = require('./defaults/config.js').defaults;
+				var defaultNetwork = defaultConfig.defaults;
 				
-				defaults.nick = defaults.username = defaults.realname = userName;
+				defaultNetwork.nick = defaultNetwork.username = defaultNetwork.realname = userName;
 				
-				userInfo.networks = [defaults];
+				userInfo.networks = [defaultNetwork];
 
 				fs.writeFileSync(
 					userFile,

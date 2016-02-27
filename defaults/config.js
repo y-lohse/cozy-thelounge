@@ -1,4 +1,5 @@
 module.exports = {
+	cozyuser: 'cozy',
 	//
 	// Set the server mode.
 	// Public servers does not require authentication.
