@@ -2,7 +2,7 @@
   "name": "cozy-thelounge",
   "version": "0.0.1",
   "description": "The self-hosted Web IRC client",
-  "displayName": "The Lounge",
+  "cozy-displayName": "The Lounge",
   "main": "server.js",
   "scripts": {
     "postinstall": "cd node_modules/thelounge && sudo npm install && sudo npm run build",
