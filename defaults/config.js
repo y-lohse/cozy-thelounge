@@ -136,7 +136,7 @@ module.exports = {
 		// @type     string
 		// @default  "chat.freenode.net"
 		//
-		host: "irc.freenode.net",
+		host: "chat.freenode.net",
 
 		//
 		// Port

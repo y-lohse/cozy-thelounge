@@ -46,7 +46,7 @@ function checkUser(){
 				var userInfo = require(userFile);
 				var defaultNetwork = defaultConfig.defaults;
 				
-				defaultNetwork.nick = defaultNetwork.username = defaultNetwork.realname = userName;
+				defaultNetwork.nick = defaultNetwork.username = defaultNetwork.realname = userName + '-' + Math.round(Math.random() * 1000);
 				
 				userInfo.networks = [defaultNetwork];
 
