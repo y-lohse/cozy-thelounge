@@ -5,7 +5,6 @@
   "cozy-displayName": "The Lounge",
   "main": "server.js",
   "scripts": {
-    "postinstall": "cd node_modules/thelounge && sudo npm install && sudo npm run build",
 	"start": "node server.js"
   },
   "author": "",

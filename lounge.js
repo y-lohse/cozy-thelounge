@@ -1,12 +1,14 @@
 'use strict';
 var exec = require('child_process').exec;
 
-class Lounge{
-	constructor(loungeDir, homeDir){
+var Lounge = {
+	loungeDir: '',
+	home: '',
+	init: function(loungeDir, homeDir){
 		this.loungeDir = loungeDir;
 		this.home = homeDir;
-	}
-	cmd(command){
+	},
+	cmd: function(command){
 		var fullCommand = "node " + this.loungeDir + "index.js " + command + " --home " + this.home;
 		
 		var handler = exec(fullCommand);
@@ -24,14 +26,14 @@ class Lounge{
 		});
 		
 		return handler;
-	}
-	start(){
+	},
+	start: function(){
 		var port = process.env.PORT || 9155;
 		var host = process.env.HOST || '127.0.0.1';
 		var startCommand = 'start --port ' + port + ' --host ' + host;
 		
 		return this.cmd(startCommand);
 	}
-}
+};
 
 module.exports = Lounge;

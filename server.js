@@ -1,13 +1,13 @@
 var fs = require('fs'),
 	mkdirp = require('mkdirp'),
-	TheLounge = require('./lounge');
+	lounge = require('./lounge');
 var defaultConfig = require('./defaults/config.js');
 
 var loungeDir = 'node_modules/thelounge/',
 	configDir = process.env.APPLICATION_PERSISTENT_DIRECTORY || __dirname + '/config',
 	configFile = configDir + '/config.js';
 
-var lounge = new TheLounge(loungeDir, configDir);
+lounge.init(loungeDir, configDir);
 
 var userName = defaultConfig.cozyuser;
 
