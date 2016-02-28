@@ -25,7 +25,7 @@ module.exports = {
 	// @type     int
 	// @default  9000
 	//
-	port: 9155,
+	port: 9624,
 
 	//
 	// Set the local IP to bind to.

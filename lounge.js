@@ -28,7 +28,7 @@ var Lounge = {
 		return handler;
 	},
 	start: function(){
-		var port = process.env.PORT || 9155;
+		var port = process.env.PORT || 9624;
 		var host = process.env.HOST || '127.0.0.1';
 		var startCommand = 'start --port ' + port + ' --host ' + host;
 		
