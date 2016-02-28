@@ -36,7 +36,7 @@ var Lounge = {
 		return this.cmd(startCommand);
 	},
 	add: function(user, password){
-		var userHandler = this.cmd('add '+user);
+		var userHandler = this.cmd('add ' + user);
 			
 		userHandler.stdout.on('data', function(message){
 			//contrary to what the doc says, the password has to be inputed manually

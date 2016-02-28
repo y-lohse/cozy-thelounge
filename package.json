@@ -11,6 +11,6 @@
   "license": "MIT",
   "dependencies": {
     "mkdirp": "^0.5.1",
-    "thelounge": "git+https://github.com/y-lohse/lounge.git"
+    "thelounge": "git+https://github.com/y-lohse/lounge.git#cozy"
   }
 }
