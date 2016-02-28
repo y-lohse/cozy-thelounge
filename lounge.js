@@ -33,6 +33,18 @@ var Lounge = {
 		var startCommand = 'start --port ' + port + ' --host ' + host;
 		
 		return this.cmd(startCommand);
+	},
+	add: function(user, password){
+		var userHandler = this.cmd('add '+user);
+			
+		userHandler.stdout.on('data', function(message){
+			//contrary to what the doc says, the password has to be inputed manually
+			if (message.match(/^Password/)) userHandler.stdin.write(password + "\n");
+			//and then for whatever reason, the process doesn't terminate after the user is created
+			else if (message.match(new RegExp("^User '" + user + "' created"))) userHandler.kill();
+		});
+
+		return userHandler;
 	}
 };
 

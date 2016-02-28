@@ -21,7 +21,8 @@ function checkConfig(){
 				configFile,
 				fs.readFileSync(__dirname + '/defaults/config.js')
 			);
-
+			console.log('created file ' + configFile);
+			
 			//now create the user
 			checkUser();
 		}
@@ -38,14 +39,7 @@ function checkUser(){
 	
 	fs.stat(userFile, function(err, stats){
 		if (err){
-			var userHandler = lounge.cmd('add '+userName);
-			
-			userHandler.stdout.on('data', function(message){
-				//contrary to what the doc says, the password has to be inputed manually
-				if (message.match(/^Password/)) userHandler.stdin.write("\n");
-				//and then for whatever reason, the process doesn't terminate after the user is created
-				else if (message.match(new RegExp("^User '" + userName + "' created"))) userHandler.kill();
-			});
+			var userHandler = lounge.add(userName, '');//no password
 			
 			userHandler.on('exit', function(){
 				//write default networks
@@ -61,6 +55,7 @@ function checkUser(){
 					JSON.stringify(userInfo, null, 2)
 				);
 				
+				console.log('Created user ' + userName);
 				startApp();
 			});
 		}
