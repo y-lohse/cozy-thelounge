@@ -28,12 +28,22 @@ var Lounge = {
 		return handler;
 	},
 	start: function(){
-		var port = process.env.PORT || 9624;
-		var host = process.env.HOST || '127.0.0.1';
+		process.env.HOME = this.home.substr(0, this.home.lastIndexOf('/'));
 		
-		var startCommand = 'start --port ' + port + ' --host ' + host;
+		var server = require('./' + this.loungeDir + 'src/server.js');
 		
-		return this.cmd(startCommand);
+		server({
+			host: process.env.HOST || '127.0.0.1',
+			port: process.env.PORT || 9624,
+			bind: false,
+			public: false
+		});
+//		var port = process.env.PORT || 9624;
+//		var host = process.env.HOST || '127.0.0.1';
+//		
+//		var startCommand = 'start --port ' + port + ' --host ' + host;
+//		
+//		return this.cmd(startCommand);
 	},
 	add: function(user, password){
 		var userHandler = this.cmd('add ' + user);
