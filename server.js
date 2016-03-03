@@ -4,7 +4,7 @@ var fs = require('fs'),
 var defaultConfig = require('./defaults/config.js');
 
 var loungeDir = 'node_modules/thelounge/',
-	configDir = process.env.APPLICATION_PERSISTENT_DIRECTORY + '/.lounge' || __dirname + '/config/.lounge',
+	configDir = (process.env.APPLICATION_PERSISTENT_DIRECTORY || __dirname) + '/.lounge',//appending the .lounge because it's hard-coded in the lounge source
 	configFile = configDir + '/config.js';
 
 lounge.init(loungeDir, configDir);

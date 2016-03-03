@@ -1,5 +1,5 @@
 node_modules/
-config/
+.lounge/
 
 # Windows image file caches
 Thumbs.db
