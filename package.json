@@ -1,8 +1,9 @@
 {
   "name": "cozy-thelounge",
-  "version": "0.0.1",
+  "version": "1.2.1",
   "description": "The self-hosted Web IRC client",
   "cozy-displayName": "The Lounge",
+  "icon-path": "icon.png",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
