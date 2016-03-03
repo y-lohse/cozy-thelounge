@@ -5,12 +5,13 @@
   "cozy-displayName": "The Lounge",
   "main": "server.js",
   "scripts": {
-	"start": "node server.js"
+    "start": "node server.js"
   },
   "author": "",
   "license": "MIT",
   "dependencies": {
     "mkdirp": "^0.5.1",
+    "symlink-or-copy": "^1.0.1",
     "thelounge": "git+https://github.com/y-lohse/lounge.git#cozy"
   }
 }

@@ -1,5 +1,4 @@
 var fs = require('fs'),
-	mkdirp = require('mkdirp'),
 	lounge = require('./lounge');
 var defaultConfig = require('./defaults/config.js');
 
@@ -16,18 +15,39 @@ function checkConfig(){
 	fs.stat(configFile, function(err, stats){
 		if (err){
 			console.log('No existing config found, creating one');
+			
+			var mkdirp = require('mkdirp');
 			mkdirp.sync(configDir);
 			fs.writeFileSync(
 				configFile,
 				fs.readFileSync(__dirname + '/defaults/config.js')
 			);
+			
 			console.log('created file ' + configFile);
 			
-			//now create the user
+			//now create the sym link with client files
+			checkSymLink();
+		}
+		else{
+			//there already is a config, advance to next check
+			checkSymLink();
+		}
+	});
+}
+
+function checkSymLink(){
+	fs.stat('./client', function(err, stats){
+		if (err){
+			console.log('Symlinking client files');
+			
+			var symlinkOrCopySync = require('symlink-or-copy').sync;
+			symlinkOrCopySync(loungeDir + '/client', './client');
+			
+			console.log('done');
+			//now check that the user exists
 			checkUser();
 		}
 		else{
-			//there already is a config, advance to user check
 			checkUser();
 		}
 	});
