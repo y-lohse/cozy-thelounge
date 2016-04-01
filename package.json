@@ -13,6 +13,6 @@
   "dependencies": {
     "mkdirp": "^0.5.1",
     "symlink-or-copy": "^1.0.1",
-    "thelounge": "git+https://github.com/y-lohse/lounge.git#v1.4.1"
+    "thelounge": "git+https://github.com/y-lohse/lounge.git#v1.4.2"
   }
 }
