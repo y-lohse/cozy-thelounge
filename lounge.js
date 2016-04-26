@@ -45,7 +45,8 @@ var Lounge = {
 			
 		userHandler.stdout.on('data', function(message){
 			//contrary to what the doc says, the password has to be inputed manually
-			if (message.match(/^Password/)) userHandler.stdin.write(password + "\n");
+			if (message.match(/Enter\spassword/g)) userHandler.stdin.write(password + "\n");
+            
 			//and then for whatever reason, the process doesn't terminate after the user is created
 			else if (message.match(new RegExp("^User '" + user + "' created"))) userHandler.kill();
 		});
